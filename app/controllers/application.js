@@ -1,4 +1,4 @@
-import errorMsg from 'ProjectTwoChild/addon/subhasree/subhasree.js';
+//import errorMsg from 'ProjectTwoChild/addon/subhasree/subhasree.js';
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 
@@ -42,7 +42,7 @@ export default class ApplicationController extends Controller {
   @action
   destroyUser() {
     let test = this.model;
-    console.log("While delete - "+test.toJSON());
+    //console.log("While delete - "+test.toJSON());
     let user = this.model.findBy('id');
     user.destroyRecord();
   }
