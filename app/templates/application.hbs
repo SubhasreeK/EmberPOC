@@ -1,7 +1,145 @@
-{{page-title "MyApp"}}
+<div class="header-home-user">
+		<h1 class="home-user-h1">My Ember App</h1>
+        <h4 class="home-user-h1">Manage User Console</h4>
+		<p>
+			<b>By Using Ember Data Concepts</b>
+		</p>
+	</div>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<br>
+<div>
+  <h5>Hi Subha - testing Ember Addon here..</h5>
+<button class="btn btn-primary" {{action 'buttonclick'}}>Create</button>
+</div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+       <th scope="col">Phone Number</th>
+       <th scope="col">Address</th>
+        <th scope="col">Action</th>
+    </tr>
+  </thead>
 
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
 
-{{outlet}}
+
+   {{#each model as |user|}}
+  <tbody>
+    <tr>
+      <th scope="row">{{user.id}}</th>
+      <td>{{user.firstname}}</td>
+      <td>{{user.lastname}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.phone}}</td>
+      <td>{{user.address}}</td>
+      <td><button  class="btn btn-danger" {{action 'destroyUser'}}>Delete</button>
+ 			    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Update</button>
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit User Details</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+       <form>
+  <div class="row">
+    <div class="col">
+      <b> First Name</b>
+      <Input @value={{updatedFirstName}} @type="text"  class="form-control" placeholder={{user.firstname}} />
+    </div>
+    <div class="col">
+      <b> LastName </b>
+      <Input  @type="text" class="form-control" @value={{updatedLastName}} placeholder={{user.lastname}} />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <b>Email </b>
+    <Input  @type="email"  class="form-control" @value={{updatedEmail}} placeholder={{user.email}} />
+    </div>
+    <div class="col">
+      <b>Phone</b>
+   <Input class="form-control" @value={{updatedPhone}}  @type="phone" placeholder={{user.phone}} />
+    </div>
+  </div>
+
+   <div class="row">
+     <div class="col">
+       <b>
+    Address
+       </b>
+      <Input  class="form-control" @value={{updatedAddress}} placeholder={{user.address}}  @type="text" />
+     </div></div>
+     </form>
+        </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" {{action 'updateUser'}}>Edit</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div></div>
+  </div></td>
+    </tr>
+   
+  </tbody>
+
+  {{/each}}
+</table>
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+     
+      <div class="modal-footer">
+        <button {{action 'updateUser'}}>Edits</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div></div></div></div>
+   
+ <div class="container">
+     <form>
+       
+       <h3 class="title">Add User</h3>
+       <br>
+  <div class="row">
+    <div class="col">
+      <b> FirstName</b>
+      <Input  @value={{this.newFirstName}} @type="text" class="form-control" placeholder="Enter First Name"/>
+    </div>
+    <div class="col">
+      <b> LastName </b>
+      <Input @value={{this.newLastName}} @type="text" class="form-control" placeholder="Enter Last Name"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <b>Email </b>
+    <Input @value={{this.newEmail}} @type="email"  class="form-control" placeholder="Enter Email Address"/>
+    </div>
+    <div class="col">
+      <b>Phone</b>
+     <Input @value={{this.newPhone}}  @class="form-control" placeholder="Enter Phone Number"/>
+    </div>
+  </div>
+
+   <div class="row">
+     <div class="col">
+       <b> Address </b>
+     <Input @value={{this.newAddress}}  @type="text" class="form-control" placeholder="Enter Address"/>
+     </div></div>
+     </form>
+     <br>
+    <button class="btn btn-primary" {{action 'createUser'}}>Create</button>
+  </div>
+
+
+
